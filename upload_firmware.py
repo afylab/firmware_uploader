@@ -20,7 +20,7 @@ def trigger_dfu_mode(port):
     except Exception as e:
         print(f"Error triggering DFU mode: {e}")
 
-def upload_firmware(firmware_name):
+def upload_firmwareM4(firmware_name):
     try:
         script_dir = os.path.dirname(os.path.realpath(__file__))
         firmware_path = os.path.join(script_dir, 'firmware', firmware_name)
@@ -28,6 +28,20 @@ def upload_firmware(firmware_name):
             "dfu-util",
             "-a", "0",
             "-s", "0x08100000:leave",
+            "-D", firmware_path
+        ], check=True)
+        print(f"M{firmware_name[9]} firmware uploaded successfully!")
+    except subprocess.CalledProcessError as e:
+        print(f"Error uploading firmware: {e}")
+
+def upload_firmwareM7(firmware_name):
+    try:
+        script_dir = os.path.dirname(os.path.realpath(__file__))
+        firmware_path = os.path.join(script_dir, 'firmware', firmware_name)
+        subprocess.run([
+            "dfu-util",
+            "-a", "0",
+            "-s", "0x08040000:leave",
             "-D", firmware_path
         ], check=True)
         print(f"M{firmware_name[9]} firmware uploaded successfully!")
@@ -72,7 +86,7 @@ if __name__ == "__main__":
         print("Uploading M7 firmware...")
         trigger_dfu_mode(port)
         time.sleep(0.5)
-        upload_firmware('firmwareM7.bin')
+        upload_firmwareM7('firmwareM7.bin')
         
         print()
         print("Waiting for M7 firmware to boot...")
@@ -80,7 +94,7 @@ if __name__ == "__main__":
         print("Uploading M4 firmware...")
         trigger_dfu_mode(port)
         time.sleep(0.5)
-        upload_firmware('firmwareM4.bin')
+        upload_firmwareM4('firmwareM4.bin')
         print()
         print("Waiting for M4 firmware to boot...")
         time.sleep(2)
