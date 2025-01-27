@@ -81,7 +81,7 @@ def nop_test():
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description='Upload firmware to Arduino GIGA.')
-    parser.add_argument('target', type=str, help='The target firmware to upload.', choices=['new_hardware', 'old_hardware', 'new_shield_old_hardware'], default='new_hardware')
+    parser.add_argument('target', type=str, help='The target firmware to upload.', choices=['new_hardware', 'old_hardware', 'new_shield_old_dac_adc'], default='new_hardware')
     args = parser.parse_args()
     
     port = find_giga_port()
