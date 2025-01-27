@@ -3,6 +3,7 @@ import time
 import os
 import subprocess
 import serial.tools.list_ports
+import argparse
 
 def find_giga_port():
     ports = serial.tools.list_ports.comports()
@@ -79,6 +80,10 @@ def nop_test():
         print(f"Error during NOP test: {e}")
 
 if __name__ == "__main__":
+    parser = argparse.ArgumentParser(description='Upload firmware to Arduino GIGA.')
+    parser.add_argument('target', type=str, help='The target firmware to upload.', choices=['new_hardware', 'old_hardware', 'new_shield_old_hardware'], default='new_hardware')
+    args = parser.parse_args()
+    
     port = find_giga_port()
     if port:
         print()
@@ -94,7 +99,7 @@ if __name__ == "__main__":
         print("Uploading M4 firmware...")
         trigger_dfu_mode(port)
         time.sleep(0.5)
-        upload_firmwareM4('firmwareM4.bin')
+        upload_firmwareM4(f'firmwareM4_{args.target}.bin')
         print()
         print("Waiting for M4 firmware to boot...")
         time.sleep(2)
