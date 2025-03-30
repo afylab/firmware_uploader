@@ -13,6 +13,11 @@
 
 ## 3. Plug in Arduino Giga
 
-## 4. Run `python3 upload_firmware.py`
+## 4. Run `python3 upload_firmware.py {target}`
+
+### {target} can be one of:
+- new_hardware
+- old_hardware
+- new_shield_old_dac_adc
 
 ## 5. Feel free to contact `markzakharyan@ucsb.edu` via email or Slack if something isn't working
