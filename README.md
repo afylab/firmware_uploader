@@ -1,5 +1,7 @@
 # Firmware Installation Guide
 
+This is code that uploads Young Lab DAC/ADC firmware to an Arduino Giga. If there's no `firmware` directory present, make sure that you've downloaded this from the [latest DAC/ADC firmware release](https://github.com/afylab/dac-adc-firmware/releases).
+
 ## 1. Make sure you have `dfu-util` installed
 
 - **Linux (Debian)**: `sudo apt install dfu-util`
