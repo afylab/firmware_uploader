@@ -15,11 +15,16 @@ This is code that uploads Young Lab DAC/ADC firmware to an Arduino Giga. If ther
 
 ## 3. Plug in Arduino Giga
 
-## 4. Run `python3 upload_firmware.py {target}`
+## 4. Run `python3 upload_firmware.py {target} {serial number}`
 
 ### {target} can be one of:
+
 - new_hardware
 - old_hardware
 - new_shield_old_dac_adc
 
-## 5. Feel free to contact `markzakharyan@ucsb.edu` via email or Slack if something isn't working
+### {serial number} must be 3 characters
+
+## 5. To modify the serial number of an existing device, simply run `python3 patch_serial_number.py {serial number}`
+
+## 6. Feel free to contact `markzakharyan@ucsb.edu` via email or Slack if something isn't working
